@@ -14,9 +14,10 @@
       <% @resources.each do |device| %>
         <tr class='align-middle'>
           <td><%= device.modelname %></td>
-          <td><%= device.operation_system %></td>
+          <td><%= device.operating_system %></td>
           <td><%= device.os_version %></td>
           <td><%= device.locale %></td>
+          <td><%= device.player.first_name %></td>
           <td><%= link_to 'Show', device, class: 'mt-2 btn btn-outline-primary' %></td>
           <td><%= link_to 'Edit', edit_device_path(device), class: 'mt-2 btn btn-outline-primary' %></td>
           <td><%= button_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' }, class: 'mt-2 btn btn-outline-danger' %></td>

@@ -7,7 +7,7 @@
   </select>
   <%= form.text_field :os_version, placeholder: "Os Version", class: 'mb-3 form-control' %>
   <%= form.text_field :locale, placeholder: "Locale", class: 'mb-3 form-control' %>
-
+  <%= form.collection_select :player_id,  Player.all, :id, :first_name , {class: 'mb-3 form-select'} %>
   <%= form.submit class: 'mt-2 btn btn-outline-success' %>
   <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
   <%= link_to 'Go to Devices', devices_path, class: 'mt-2 btn btn-outline-secondary' %>

@@ -1,0 +1,10 @@
+<%= form_with model: offer_target do |form| %>
+  <%= form.text_field :title, placeholder: "Title", class: 'mb-3 form-control' %>
+  <%= form.text_field :header, placeholder: "Header", class: 'mb-3 form-control' %>
+  <%= form.text_area :description, size: '50x3', placeholder: "Description", class: 'mb-3 form-control' %>
+  <%= form.text_field :points, placeholder: "Points", class: 'mb-3 form-control' %>
+  <%= form.text_field :payout, placeholder: "Payout", class: 'mb-3 form-control' %>
+  <%= form.submit class: 'mt-2 btn btn-outline-success' %>
+  <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
+  <%= link_to 'Go to Offers', offers_path, class: 'mt-2 btn btn-outline-secondary' %>
+<% end %>

@@ -1,0 +1,27 @@
+<div class='mt-5 container'>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-6">
+      <h3>Device</h3>
+      <div class='mb-3'>
+        <span class='font-weight-bold'>Model Name: </span>
+        <%= @resource.modelname %>
+      </div>
+      <div class='mb-3'>
+        <span class='font-weight-bold'>Operating System: </span>
+        <%= @resource.operation_system %>
+      </div>
+      <div class='mb-3'>
+        <span class='font-weight-bold'>OS Version: </span>
+        <%= @resource.os_version %>
+      </div>
+      <div class='mb-3'>
+        <span class='font-weight-bold'>Locale: </span>
+        <%= @resource.locale %>
+      </div>
+
+      <%= link_to 'Edit', edit_device_path(@resource), class:'mt-2 btn btn-outline-secondary' %>
+      <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
+  <%= link_to 'Go to Devices', devices_path, class: 'mt-2 btn btn-outline-secondary' %>
+    </div>
+  </div>
+</div>

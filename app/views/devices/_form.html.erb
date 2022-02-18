@@ -1,0 +1,14 @@
+<%= form_with model: device do |form| %>
+  <%= form.text_field :modelname, placeholder: "Model Name", class: 'mb-3 form-control' %>
+  <select class="mb-3 form-select" name='[device][operating_system]'>
+    <option selected>Select OS</option>
+    <option value="ios">IOS</option>
+    <option value="android">Android</option>
+  </select>
+  <%= form.text_field :os_version, placeholder: "Os Version", class: 'mb-3 form-control' %>
+  <%= form.text_field :locale, placeholder: "Locale", class: 'mb-3 form-control' %>
+
+  <%= form.submit class: 'mt-2 btn btn-outline-success' %>
+  <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
+  <%= link_to 'Go to Devices', devices_path, class: 'mt-2 btn btn-outline-secondary' %>
+<% end %>

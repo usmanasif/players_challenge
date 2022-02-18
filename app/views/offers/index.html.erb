@@ -1,0 +1,32 @@
+<div class='mt-5 container'>
+  <h1>Offers</h1>
+  <table class='table table-striped'>
+    <thead class='table-dark'>
+      <tr>
+        <th>Title</th>
+        <th>Header</th>
+        <th>Description</th>
+        <th>Points</th>
+        <th>Payout</th>
+        <th colspan='3'></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @resources.each do |offer| %>
+        <tr class='align-middle'>
+          <td><%= offer.title %></td>
+          <td><%= offer.header %></td>
+          <td><%= offer.description %></td>
+          <td><%= offer.points %></td>
+          <td><%= offer.payout %></td>
+          <td><%= link_to 'Show', offer, class: 'mt-2 btn btn-outline-primary' %></td>
+          <td><%= link_to 'Edit', edit_offer_path(offer), class: 'mt-2 btn btn-outline-primary' %></td>
+          <td><%= button_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'mt-2 btn btn-outline-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Add New Offer', new_offer_path, class: 'mt-2 btn btn-outline-secondary' %>
+  <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
+</div>

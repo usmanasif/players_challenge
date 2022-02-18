@@ -17,7 +17,6 @@ class BaseController < ApplicationController
   end
 
   def create
-    byebug
     if created_resource.save
       flash[:notice] = "#{model_name.underscore.humanize.downcase} is created successfully"
       redirect_to send("#{controller_name.singularize}_path", created_resource.id)

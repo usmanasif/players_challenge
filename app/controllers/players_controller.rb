@@ -7,11 +7,18 @@ class PlayersController < BaseController
   end
 
   def search_by
-    return unless params[:offer_target_id].present?
+    players = if params[:offer_target_id].present?
+                offer_target = OfferTarget.find(params[:offer_target_id])
+                Player.includes(:device)
+                                .where('birthdate BETWEEN ? AND ?', offer_target.max_birtdate, offer_target.min_birtdate)
+                                .where(gender: offer_target.gender)
+                                .where(devices: { operating_system: offer_target.operating_system })
+                                .where(devices: { os_version: offer_target.minimum_os_version } )
+                                .where(devices: { locale: offer_target.locale })
 
-    offer_target = OfferTarget.find(params[:offer_target_id])
-    players = Player.where('birthdate BETWEEN ? AND ?', offer_target.max_birtdate, offer_target.min_birtdate)
-
+              else
+                Player.all
+              end
     render json: players, status: 200
   end
 

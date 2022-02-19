@@ -103,6 +103,7 @@ GEM
     importmap-rails (1.0.2)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    iniparse (1.5.0)
     io-console (0.5.11)
     io-wait (0.2.1)
     irb (1.4.1)
@@ -141,6 +142,10 @@ GEM
       racc (~> 1.4)
     nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
+    overcommit (0.58.0)
+      childprocess (>= 0.6.3, < 5)
+      iniparse (~> 1.4)
+      rexml (~> 3.2)
     parallel (1.21.0)
     parser (3.1.0.0)
       ast (~> 2.4.1)
@@ -255,6 +260,7 @@ DEPENDENCIES
   faker
   importmap-rails
   jbuilder
+  overcommit
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.2)

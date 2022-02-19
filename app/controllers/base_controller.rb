@@ -4,6 +4,8 @@ class BaseController < ApplicationController
   include BaseHandler
   include ExceptionHandler
 
+  before_action :create_resource, only: :create
+
   protected
 
   def index
@@ -19,31 +21,30 @@ class BaseController < ApplicationController
   end
 
   def create
-    if created_resource.save
-      flash[:notice] = "#{model_name.underscore.humanize.downcase} is created successfully"
-      redirect_to send("#{controller_name.singularize}_path", created_resource.id)
+    if resource.save
+      flash[:notice] = "#{model_name.underscore.humanize} is created successfully"
+      redirect_to send("#{controller_name.singularize}_path", resource.id)
     else
-      flash[:alert] = "Unable to create #{model_name.underscore.humanize.downcase}"
-      render :new
+      render :new, :unprocessable_entity
     end
   end
 
   def update
     if resource.update(permitted_params)
-      flash[:notice] = "#{model_name.underscore.humanize.downcase} is updated successfully"
-      redirect_to send("#{model_name.underscore.humanize.downcase}_path", resource.id)
+      flash[:notice] = "#{model_name.underscore.humanize} is updated successfully"
+      redirect_to send("#{model_name.underscore.downcase}_path", resource.id)
     else
-      flash[:alert] = "Unable to update #{model_name.underscore.humanize.downcase}"
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     if resource.destroy
-      flash[:notice] = "#{model_name.underscore.humanize.downcase} is deleted successfully"
+      flash[:notice] = "#{model_name.underscore.humanize} is deleted successfully"
     else
-      flash[:alert] = "Unable to delete #{model_name.underscore.humanize.downcase}"
+      flash[:alert] = "Unable to delete #{model_name.underscore.humanize}"
     end
+
     redirect_to send("#{controller_name}_path")
   end
 
@@ -67,8 +68,8 @@ class BaseController < ApplicationController
   end
 
   # use for create method
-  def created_resource
-    @created_resource ||= model.new(permitted_params)
+  def create_resource
+    @resource = model.new(permitted_params)
   end
 
   def model

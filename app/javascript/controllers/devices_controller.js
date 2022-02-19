@@ -21,6 +21,7 @@ const handleSuccess = (data) => {
     $('.modal-body').css('color', 'red');
     $('.modal-body').text("Couldn't find any devices");
   }else{
+    $('.modal-body').css('color', 'green');
     $('.modal-body').text(`${data} matching devices`);
   }
 

@@ -6,6 +6,7 @@ class OfferTargetsController < BaseController
   private
 
   def permitted_params
-    params.require(:offer_target).permit(:first_name, :last_name, :birthdate, :gender)
+    params.require(:offer_target).permit(:minimum_age, :maximum_age, :gender,
+                                         :operating_system, :minimum_os_version, :locale, :offer_id)
   end
 end

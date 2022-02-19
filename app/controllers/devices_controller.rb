@@ -3,6 +3,10 @@
 class DevicesController < BaseController
   actions :index, :show, :new, :create, :edit, :update, :destroy
 
+  def index
+    @resources = Device.includes(:player)
+  end
+
   def search_by
     return if params[:os_version_range].blank?
 

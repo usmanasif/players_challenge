@@ -1,6 +1,18 @@
 class DevicesController < BaseController
   actions :index, :show, :new, :create, :edit, :update, :destroy
 
+  def search_by
+    return unless params[:os_version_range].present?
+
+    lowaer_range, upper_range = params[:os_version_range].split('-')
+
+    devices = Device.pluck(:os_version).map do |os| 
+      os if Gem::Version.new(os) > Gem::Version.new(lowaer_range) && Gem::Version.new(os) < Gem::Version.new(upper_range)
+    end.compact
+
+    render json: devices.size, status: 200
+  end
+
   private
 
   def permitted_params

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BaseController < ApplicationController
   include BaseHandler
   include ExceptionHandler
@@ -39,11 +41,10 @@ class BaseController < ApplicationController
   def destroy
     if resource.destroy
       flash[:notice] = "#{model_name.underscore.humanize.downcase} is deleted successfully"
-      redirect_to send("#{controller_name}_path")
     else
       flash[:alert] = "Unable to delete #{model_name.underscore.humanize.downcase}"
-      redirect_to send("#{controller_name}_path")
     end
+    redirect_to send("#{controller_name}_path")
   end
 
   def show
@@ -67,7 +68,7 @@ class BaseController < ApplicationController
 
   # use for create method
   def created_resource
-    @new_resource ||= model.new(permitted_params)
+    @created_resource ||= model.new(permitted_params)
   end
 
   def model

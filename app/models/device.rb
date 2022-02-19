@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Device < ApplicationRecord
   belongs_to :player
 
-  OPERATING_SYSTEMS = ['ios', 'android']
+  OPERATING_SYSTEMS = %w[ios android].freeze
 
   validates :operating_system, inclusion: { in: OPERATING_SYSTEMS }
   validates :os_version, format: { with: /(\d+\.)(\d+\.)(\d+)/, message: 'Use the syntax: 1.0.0' }

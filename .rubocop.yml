@@ -1,0 +1,25 @@
+require: rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - db/schema.rb
+    - config/**/*
+    - bin/*
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - Rakefile
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+Metrics/AbcSize:
+  Exclude:
+    - 'app/controllers/base_controller.rb'
+  Max: 20
+
+Rails/Output:
+  Exclude:
+      - 'db/seeds.rb'

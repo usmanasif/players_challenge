@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OfferTargetsController < BaseController
   actions :index, :show, :new, :create, :edit, :update, :destroy
 

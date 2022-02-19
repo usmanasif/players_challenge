@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OfferTarget < ApplicationRecord
   belongs_to :offer
 

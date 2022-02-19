@@ -31,3 +31,6 @@
 /config/master.key
 
 .byebug_history
+
+# Ignore coverage report
+coverage/*

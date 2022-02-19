@@ -3,7 +3,7 @@
   <%= form.text_field :first_name, placeholder: "First Name", class: 'mb-3 form-control' %>
   <%= form.text_field :last_name, placeholder: "Last Name", class: 'mb-3 form-control' %>
   <%= form.date_field :birthdate, placeholder: "Date of Birth", class: 'mb-3 form-control' %>
-  <%= form.select :gender, Player::GENDER_OPTIONS, { include_blank: 'Select gender' }, class: 'mb-3 form-select' %>  
+  <%= form.select :gender, Player::GENDER_OPTIONS, { include_blank: 'Select gender' }, class: 'mb-3 form-select' %>
   <%= form.submit class: 'mt-2 btn btn-outline-success' %>
   <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
   <%= link_to 'Go to Players', players_path, class: 'mt-2 btn btn-outline-secondary' %>

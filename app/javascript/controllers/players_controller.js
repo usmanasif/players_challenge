@@ -1,11 +1,16 @@
-$('.search-by-offer-target').on('change', function() {
-  $.ajax({
-    url: "/players/search_by",
-    type: 'GET',
-    data: { offer_target_id: this.value },
-    success: handleSuccess
-  })
-});
+import { Controller } from '@hotwired/stimulus'
+
+export default class extends Controller {
+  filter_by_offer_target (event) {
+    console.log(event.target.value);
+    $.ajax({
+      url: "/players/search_by",
+      type: 'GET',
+      data: { offer_target_id: event.target.value },
+      success: handleSuccess
+    })
+  }
+}
 
 const handleSuccess = (data) => {
   $('table.players tbody').empty();
@@ -21,7 +26,7 @@ const handleSuccess = (data) => {
         <td><a href="/players/${player.id}" class="mt-2 btn btn-outline-primary">Show</a></td>
         <td><a href="/players/${player.id}/edit" class="mt-2 btn btn-outline-primary">Edit</a></td>
         <td>
-          <form class="button_to" method="post" action="/players/${player.id}"> 
+          <form class="button_to" method="post" action="/players/${player.id}">
             <input type="hidden" name="_method" value="delete" autocomplete="off">
             <button data-confirm="Are you sure?" class="mt-2 btn btn-outline-danger" type="submit">Destroy</button>
           </form>
@@ -30,8 +35,8 @@ const handleSuccess = (data) => {
     ));
   } else {
     newRows = `<tr class="text-center">
-                 <td colspan="7">No player found!</td>
-               </tr>`;
+                <td colspan="7">No player found!</td>
+              </tr>`;
   }
   $('table.players tbody').append(newRows);
 };

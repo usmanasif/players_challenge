@@ -4,4 +4,8 @@ class Player < ApplicationRecord
 
   # validates :birthdate, :numericality => { greater_than_or_equal_to: 13, message: 'Can`t be less than 13' }
   validates :gender, :inclusion=> { in: GENDER_OPTIONS }
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

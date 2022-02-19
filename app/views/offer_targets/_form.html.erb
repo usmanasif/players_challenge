@@ -1,15 +1,12 @@
-<%= form_with model: offer_target do |form| %>
+<%= form_with model: offer_target, local: true do |form| %>
+  <%= render "shared/error_messages", resource: offer_target %>
   <%= form.text_field :minimum_age, placeholder: "Minimum Age", class: 'mb-3 form-control' %>
   <%= form.text_field :maximum_age, placeholder: "Maximum Age", class: 'mb-3 form-control' %>
-  <%= form.text_field :gender, placeholder: "Gender", class: 'mb-3 form-control' %>
-  <select class="mb-3 form-select" name='[offer_target][operating_system]'>
-    <option selected>Select OS</option>
-    <option value="ios">IOS</option>
-    <option value="android">Android</option>
-  </select>
+  <%= form.select :gender, Player::GENDER_OPTIONS, { include_blank: 'Select gender' }, class: 'mb-3 form-select' %>
+  <%= form.select :operating_system, Device::OPERATING_SYSTEMS, { include_blank: 'Select OS' }, class: 'mb-3 form-select' %>
   <%= form.text_field :minimum_os_version, placeholder: "Minimum OS Version", class: 'mb-3 form-control' %>
   <%= form.text_field :locale, placeholder: "Locale", class: 'mb-3 form-control' %>
-  <%= form.collection_select :offer_id,  Offer.all, :id, :title , {class: 'mb-3 form-select'} %>
+  <%= form.collection_select :offer_id,  Offer.all, :id, :title , {}, {class: 'mb-3 form-select'} %>
   <%= form.submit class: 'mt-2 btn btn-outline-success' %>
   <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
   <%= link_to 'Go to Offers', offers_path, class: 'mt-2 btn btn-outline-secondary' %>

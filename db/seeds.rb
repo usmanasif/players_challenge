@@ -42,7 +42,7 @@ offers = []
   offer = Offer.create(
     title: Faker::Movie.title,
     header: Faker::Movie.title,
-    description: Faker::Lorem.sentences,
+    description: Faker::Lorem.paragraph(sentence_count: 4),
     points: Faker::Number.between(from: 1, to: 100),
     payout: Faker::Number.between(from: 500, to: 1000)
   )

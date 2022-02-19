@@ -1,11 +1,10 @@
-<%= form_with model: device do |form| %>
+<%= form_with model: device, local: true do |form| %>
+  <%= render "shared/error_messages", resource: device %>
   <%= form.text_field :modelname, placeholder: "Model Name", class: 'mb-3 form-control' %>
-
-  <%= select_tag('[device][operating_system]', os_options_for_select, class:"form-select mb-3", include_blank: 'Seletc OS') %>
-
+  <%= form.select :operating_system, Device::OPERATING_SYSTEMS, { include_blank: 'Seletc OS' }, class: 'mb-3 form-select' %>
   <%= form.text_field :os_version, placeholder: "Os Version", class: 'mb-3 form-control' %>
   <%= form.text_field :locale, placeholder: "Locale", class: 'mb-3 form-control' %>
-  <%= form.collection_select :player_id,  Player.all, :id, :full_name , {class: 'mb-3 form-select'} %>
+  <%= form.collection_select :player_id,  Player.all, :id, :full_name , {}, {class: 'mb-3 form-select'} %>
   <%= form.submit class: 'mt-2 btn btn-outline-success' %>
   <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
   <%= link_to 'Go to Devices', devices_path, class: 'mt-2 btn btn-outline-secondary' %>

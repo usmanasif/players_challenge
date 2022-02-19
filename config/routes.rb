@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       get :search_by
     end
   end
-  resources :devices
+  resources :devices do
+    collection do
+      get :search_by
+    end
+  end
   resources :offers
   resources :offer_targets
   root "players#index"

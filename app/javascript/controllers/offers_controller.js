@@ -1,20 +1,24 @@
-$('.total-payout-btn').on('click', function () {
-  $('#age-range-input').removeClass('is-invalid');
+import { Controller } from '@hotwired/stimulus'
 
-  const age_range = $('#age-range-input').val();
+export default class extends Controller {
+  total_payout_by_age_range () {
+    $('#age-range-input').removeClass('is-invalid');
 
-  if (age_range) {
-    $.ajax({
-      url: '/offers/payout_with_age_range',
-      type: 'GET',
-      data: { age_range },
-      success: handleSuccess,
-      error: handleOnError,
-    });
-  } else {
-    handleOnError();
+    const age_range =this.element.querySelectorAll('#age-range-input')[0].value;
+
+    if (age_range) {
+      $.ajax({
+        url: '/offers/payout_with_age_range',
+        type: 'GET',
+        data: { age_range },
+        success: handleSuccess,
+        error: handleOnError,
+      });
+    } else {
+      handleOnError();
+    }
   }
-});
+}
 
 const handleSuccess = (data) => {
   $('.modal-body').css('color', 'green');

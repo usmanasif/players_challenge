@@ -1,4 +1,4 @@
-<div class='mt-5 container'>
+<div class="mt-5 container" data-controller="devices">
   <h1>Devices</h1>
 
   <div class="row mb-3">
@@ -6,10 +6,18 @@
       <h5>Filter by OS Version</h5>
     </div>
     <div class="col-sm-6">
-      <input type="text" id="os_version_range" placeholder='Enter version range e.g. (5.4.0 - 10.0.1)' class='mb-3 form-control' />
+      <input
+        type="text"
+        id="os_version_range"
+        placeholder='Enter version range e.g. (5.4.0 - 10.0.1)'
+        data-target="devices.content"
+        class='mb-3 form-control'
+      />
     </div>
     <div class="col-sm-3">
-      <button class='btn btn-outline-secondary find_matching_devices'>Find Devices Count</button>
+      <button class='btn btn-outline-secondary find_matching_devices' data-action="click->devices#find_devices_count">
+        Find Devices Count
+      </button>
     </div>
   </div>
 

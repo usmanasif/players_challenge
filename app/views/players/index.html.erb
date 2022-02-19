@@ -1,4 +1,4 @@
-<div class='mt-5 container'>
+<div class='mt-5 container' data-controller="players">
   <h1>Players</h1>
 
   <div class="row mb-3">
@@ -8,7 +8,8 @@
     <div class="col-sm-6">
       <%= collection_select(:offer_target, :id, OfferTarget.all, :id, :to_s,
                             { include_blank: 'Select' },
-                            { class: 'form-select search-by-offer-target' }) %>
+                            { class: 'form-select search-by-offer-target',
+                              data: { action: 'change->players#filter_by_offer_target' } }) %>
     </div>
   </div>
 

@@ -1,20 +1,23 @@
-$('.find_matching_devices').on('click', function () {
-  $('#os_version_range').removeClass('is-invalid');
+import { Controller } from '@hotwired/stimulus'
 
-  const os_version_range = $('#os_version_range').val();
+export default class extends Controller {
+  find_devices_count () {
+    $('#os_version_range').removeClass('is-invalid');
+    const os_version_range = this.element.querySelectorAll('#os_version_range')[0].value;
 
-  if (os_version_range) {
-    $.ajax({
-      url: '/devices/search_by',
-      type: 'GET',
-      data: { os_version_range },
-      success: handleSuccess,
-      error: handleOnError,
-    });
-  } else {
-    handleOnError();
+    if (os_version_range) {
+      $.ajax({
+        url: '/devices/search_by',
+        type: 'GET',
+        data: { os_version_range },
+        success: handleSuccess,
+        error: handleOnError,
+      });
+    } else {
+      handleOnError();
+    }
   }
-});
+}
 
 const handleSuccess = (data) => {
   if (!data) {

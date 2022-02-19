@@ -4,11 +4,13 @@ class DevicesController < BaseController
   def search_by
     return unless params[:os_version_range].present?
 
-    range = params[:os_version_range].split('-')
-    devices = Device.pluck(:os_version).map {
-      |os| os if Gem::Version.new(os) > Gem::Version.new(range[0]) && Gem::Version.new(os) < Gem::Version.new(range[1])
-    }.compact
-    render json: devices.count, status: 200
+    lowaer_range, upper_range = params[:os_version_range].split('-')
+
+    devices = Device.pluck(:os_version).map do |os| 
+      os if Gem::Version.new(os) > Gem::Version.new(lowaer_range) && Gem::Version.new(os) < Gem::Version.new(upper_range)
+    end.compact
+
+    render json: devices.size, status: 200
   end
 
   private

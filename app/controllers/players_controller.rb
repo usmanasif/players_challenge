@@ -1,11 +1,6 @@
 class PlayersController < BaseController
   actions :index, :show, :new, :create, :edit, :update, :destroy
 
-  def index
-    super
-    @offer_target_options = OfferTarget.all.map { |ot| [ot.to_s, ot.id] }
-  end
-
   def search_by
     players = if params[:offer_target_id].present?
                 offer_target = OfferTarget.find(params[:offer_target_id])

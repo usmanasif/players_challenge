@@ -62,6 +62,7 @@ group :development do
   gem 'bullet'
   gem 'overcommit'
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'

@@ -1,4 +1,6 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   NewCops: enable
@@ -22,4 +24,13 @@ Metrics/AbcSize:
 
 Rails/Output:
   Exclude:
-      - 'db/seeds.rb'
+    - 'db/seeds.rb'
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false

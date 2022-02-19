@@ -29,28 +29,28 @@ RSpec.describe PlayersController, type: :controller do
   describe '#index' do
     it 'respond with code: 200' do
       get :index
-      expect(response.code).to eq('200')
+      expect(response).to have_http_status(:ok)
     end
   end
 
   describe '#show' do
     it 'respond with code: 200' do
       get :show, params: { id: player.id }
-      expect(response.code).to eq('200')
+      expect(response).to have_http_status(:ok)
     end
   end
 
   describe '#new' do
     it 'respond with code: 200' do
       get :new
-      expect(response.code).to eq('200')
+      expect(response).to have_http_status(:ok)
     end
   end
 
   describe '#edit' do
     it 'respond with code: 200' do
       get :edit, params: { id: player.id }
-      expect(response.code).to eq('200')
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -60,62 +60,67 @@ RSpec.describe PlayersController, type: :controller do
 
     it 'respond with code: 200' do
       get :search_by, params: { offer_target_id: offer_target.id }
-      expect(response.code).to eq('200')
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to eq '[]'
     end
   end
 
   describe '#create' do
     context 'with valid data' do
-      it 'should create the player successfully' do
-        post :create, params: request_params
+      subject { post :create, params: request_params }
+
+      it 'creates the player successfully' do
+        expect { subject }.to change(Player, :count).by(1)
         expect(flash[:notice]).to eq('Player is created successfully')
-        expect { post :create, params: request_params }.to change { Player.count }.by(1)
-        expect(response.code).to eq('302')
+        expect(response).to have_http_status(:redirect)
       end
     end
 
     context 'with invalid data' do
-      it 'should not create the player successfully' do
-        post :create, params: invalid_params
-        expect { post :create, params: invalid_params }.to change { Player.count }.by(0)
-        expect(response.code).to eq('422')
+      subject { post :create, params: invalid_params }
+
+      it 'does not create the player successfully' do
+        expect { subject }.to change(Player, :count).by(0)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe '#update' do
     context 'with valid data' do
-      it 'should update the player successfully' do
+      it 'updates the player successfully' do
         put :update, params: { id: player.id }.merge(request_params)
         expect(flash[:notice]).to eq('Player is updated successfully')
         expect(player.reload.first_name).to eq 'Hyman'
-        expect(response.code).to eq('302')
+        expect(response).to have_http_status(:redirect)
       end
     end
 
     context 'with invalid data' do
-      it 'should not update the player successfully' do
+      it 'does not update the player successfully' do
         put :update, params: { id: player.id }.merge(invalid_params)
-        expect(response.code).to eq('422')
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe '#destroy' do
     context 'with valid data' do
-      it 'should destroy the player successfully' do
+      it 'destroys the player successfully' do
         delete :destroy, params: { id: player.id }
+        expect(response).to redirect_to(players_url)
         expect(flash[:notice]).to eq('Player is deleted successfully')
-        expect(response.code).to eq('302')
+        expect(response).to have_http_status(:redirect)
       end
     end
 
     context 'with invalid data' do
-      it 'should not destroy the player successfully' do
+      it 'does not destroy the player successfully' do
         allow_any_instance_of(Player).to receive(:destroy).and_return(false)
         delete :destroy, params: { id: player.id }
+        expect(response).to redirect_to(players_url)
         expect(flash[:alert]).to eq('Unable to delete Player')
-        expect(response.code).to eq('302')
+        expect(response).to have_http_status(:redirect)
       end
     end
   end

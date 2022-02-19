@@ -9,5 +9,5 @@
   <%= form.collection_select :offer_id,  Offer.all, :id, :title , {}, {class: 'mb-3 form-select'} %>
   <%= form.submit class: 'mt-2 btn btn-outline-success' %>
   <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
-  <%= link_to 'Go to Offers', offers_path, class: 'mt-2 btn btn-outline-secondary' %>
+  <%= link_to 'Go to Offer Targets', offer_targets_path, class: 'mt-2 btn btn-outline-secondary' %>
 <% end %>

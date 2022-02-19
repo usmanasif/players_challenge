@@ -12,7 +12,11 @@ Rails.application.routes.draw do
       get :search_by
     end
   end
-  resources :offers
+  resources :offers do
+    collection do
+      get :payout_with_age_range
+    end
+  end
   resources :offer_targets
   root "players#index"
 end

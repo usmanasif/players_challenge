@@ -6,7 +6,6 @@ class OfferTarget < ApplicationRecord
   validates :gender, inclusion: { in: Player::GENDER_OPTIONS }
   validates :operating_system, inclusion: { in: Device::OPERATING_SYSTEMS }
 
-
   def to_s
     "#{minimum_age}-#{maximum_age}, #{gender}, #{operating_system}, #{minimum_os_version}, #{locale}"
   end

@@ -25,7 +25,8 @@ class BaseController < ApplicationController
       flash[:notice] = "#{model_name.underscore.humanize} is created successfully"
       redirect_to send("#{controller_name.singularize}_path", resource.id)
     else
-      render :new, :unprocessable_entity
+      @new_resource = resource
+      render :new, status: :unprocessable_entity
     end
   end
 

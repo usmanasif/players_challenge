@@ -9,10 +9,10 @@ $('.find_matching_devices').on('click', function () {
       type: 'GET',
       data: { os_version_range },
       success: handleSuccess,
-      error: () => $('#os_version_range').addClass('is-invalid'),
+      error: handleOnError,
     });
   } else {
-    $('#os_version_range').addClass('is-invalid');
+    handleOnError();
   }
 });
 
@@ -25,4 +25,8 @@ const handleSuccess = (data) => {
   }
 
   $('#devices_count_modal').modal('show');
+};
+
+const handleOnError = () => {
+  $('#os_version_range').addClass('is-invalid');
 };

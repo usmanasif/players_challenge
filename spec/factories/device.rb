@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory(:device) do
     modelname { Faker::Device.model_name }

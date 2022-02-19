@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class OfferTarget < ApplicationRecord
-  GENDER_OPTIONS = ['male', 'female', 'non-binary']
   belongs_to :offer
 
   validates :minimum_age, presence: true
@@ -10,7 +9,6 @@ class OfferTarget < ApplicationRecord
   validates :operating_system, inclusion: { in: Device::OPERATING_SYSTEMS }
   validates :minimum_os_version, presence: true
   validates :locale, presence: true
-  validates :offer, presence: true
 
   def to_s
     "#{minimum_age}-#{maximum_age}, #{gender}, #{operating_system}, #{minimum_os_version}, #{locale}"

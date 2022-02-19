@@ -3,4 +3,3 @@ module DevicesHelper
     options_for_select(Device::OPERATING_SYSTEMS.collect { |v| [v.upcase, v] })
   end
 end
-  

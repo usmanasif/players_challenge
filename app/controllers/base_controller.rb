@@ -5,6 +5,7 @@ class BaseController < ApplicationController
   include ExceptionHandler
 
   before_action :create_resource, only: :create
+  before_action :build_resource, only: :new
 
   protected
 
@@ -13,7 +14,7 @@ class BaseController < ApplicationController
   end
 
   def new
-    new_resource
+    resource
   end
 
   def edit
@@ -25,7 +26,6 @@ class BaseController < ApplicationController
       flash[:notice] = "#{model_name.underscore.humanize} is created successfully"
       redirect_to send("#{controller_name.singularize}_path", resource.id)
     else
-      @new_resource = resource
       render :new, status: :unprocessable_entity
     end
   end
@@ -64,8 +64,8 @@ class BaseController < ApplicationController
   end
 
   # new method
-  def new_resource
-    @new_resource ||= model.new
+  def build_resource
+    @resource = model.new
   end
 
   # use for create method

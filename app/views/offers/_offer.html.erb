@@ -1,0 +1,10 @@
+<tr class='align-middle'>
+  <td><%= offer.title %></td>
+  <td><%= offer.header %></td>
+  <td><%= offer.description %></td>
+  <td><%= offer.points %></td>
+  <td><%= offer.payout %></td>
+  <td><%= link_to 'Show', offer, class: 'mt-2 btn btn-outline-primary' %></td>
+  <td><%= link_to 'Edit', edit_offer_path(offer), class: 'mt-2 btn btn-outline-primary' %></td>
+  <td><%= button_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'mt-2 btn btn-outline-danger' %></td>
+</tr>

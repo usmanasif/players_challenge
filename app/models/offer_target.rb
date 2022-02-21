@@ -3,9 +3,11 @@
 class OfferTarget < ApplicationRecord
   belongs_to :offer
 
+  enum gender: { male: 0, female: 1, non_binary: 2 }
+
   validates :minimum_age, presence: true
   validates :maximum_age, presence: true
-  validates :gender, inclusion: { in: Player::GENDER_OPTIONS }
+  validates :gender, presence: true
   validates :operating_system, inclusion: { in: Device::OPERATING_SYSTEMS }
   validates :minimum_os_version, presence: true
   validates :locale, presence: true

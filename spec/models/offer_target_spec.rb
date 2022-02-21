@@ -6,7 +6,7 @@ RSpec.describe OfferTarget, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:minimum_age) }
     it { is_expected.to validate_presence_of(:maximum_age) }
-    it { is_expected.to validate_inclusion_of(:gender).in_array(Player::GENDER_OPTIONS) }
+    it { is_expected.to validate_presence_of(:gender) }
     it { is_expected.to validate_inclusion_of(:operating_system).in_array(Device::OPERATING_SYSTEMS) }
     it { is_expected.to validate_presence_of(:minimum_os_version) }
     it { is_expected.to validate_presence_of(:locale) }

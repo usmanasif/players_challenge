@@ -23,7 +23,7 @@ class BaseController < ApplicationController
 
   def create
     if resource.save
-      flash[:notice] = "#{model_name.underscore.humanize} is created successfully"
+      flash[:notice] = "#{humanized_model_name} is created successfully"
       redirect_to send("#{controller_name.singularize}_path", resource.id)
     else
       render :new, status: :unprocessable_entity
@@ -32,7 +32,7 @@ class BaseController < ApplicationController
 
   def update
     if resource.update(permitted_params)
-      flash[:notice] = "#{model_name.underscore.humanize} is updated successfully"
+      flash[:notice] = "#{humanized_model_name} is updated successfully"
       redirect_to send("#{model_name.underscore.downcase}_path", resource.id)
     else
       render :edit, status: :unprocessable_entity
@@ -41,9 +41,9 @@ class BaseController < ApplicationController
 
   def destroy
     if resource.destroy
-      flash[:notice] = "#{model_name.underscore.humanize} is deleted successfully"
+      flash[:notice] = "#{humanized_model_name} is deleted successfully"
     else
-      flash[:alert] = "Unable to delete #{model_name.underscore.humanize}"
+      flash[:alert] = "Unable to delete #{humanized_model_name}"
     end
 
     redirect_to send("#{controller_name}_path")
@@ -55,7 +55,7 @@ class BaseController < ApplicationController
 
   # index method
   def resources
-    @resources ||= model.all
+    @resources ||= model.all.page(params[:page]).per(20)
   end
 
   # show/edit method
@@ -79,5 +79,9 @@ class BaseController < ApplicationController
 
   def model_name
     controller_name.camelize.singularize
+  end
+
+  def humanized_model_name
+    model_name.underscore.humanize
   end
 end

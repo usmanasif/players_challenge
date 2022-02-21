@@ -15,10 +15,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_133639) do
   enable_extension "plpgsql"
 
   create_table "devices", force: :cascade do |t|
-    t.string "modelname"
-    t.string "operating_system"
-    t.string "os_version"
-    t.string "locale"
+    t.string "modelname", null: false
+    t.string "operating_system", null: false
+    t.string "os_version", null: false
+    t.string "locale", null: false
     t.bigint "player_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,32 +27,32 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_133639) do
 
   create_table "offer_targets", force: :cascade do |t|
     t.bigint "offer_id", null: false
-    t.integer "minimum_age"
-    t.integer "maximum_age"
-    t.string "gender"
-    t.string "operating_system"
-    t.string "minimum_os_version"
-    t.string "locale"
+    t.integer "minimum_age", null: false
+    t.integer "maximum_age", null: false
+    t.integer "gender", null: false
+    t.string "operating_system", null: false
+    t.string "minimum_os_version", null: false
+    t.string "locale", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["offer_id"], name: "index_offer_targets_on_offer_id"
   end
 
   create_table "offers", force: :cascade do |t|
-    t.string "title"
-    t.string "header"
+    t.string "title", null: false
+    t.string "header", null: false
     t.string "description"
-    t.integer "points"
-    t.decimal "payout"
+    t.integer "points", null: false
+    t.decimal "payout", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "players", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.date "birthdate"
-    t.string "gender"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.date "birthdate", null: false
+    t.integer "gender", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

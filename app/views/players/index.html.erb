@@ -1,4 +1,4 @@
-<div class='mt-5 container' data-controller="players">
+<div class='my-5 container' data-controller="players">
   <h1>Players</h1>
 
   <div class="row mb-3">
@@ -29,19 +29,11 @@
           <td colspan="7">No player found!</td>
         </tr>
       <% end %>
-      <% @resources.each do |player| %>
-        <tr class='align-middle'>
-          <td><%= player.first_name %></td>
-          <td><%= player.last_name %></td>
-          <td><%= player.birthdate %></td>
-          <td><%= player.gender %></td>
-          <td><%= link_to 'Show', player, class: 'mt-2 btn btn-outline-primary' %></td>
-          <td><%= link_to 'Edit', edit_player_path(player), class: 'mt-2 btn btn-outline-primary' %></td>
-          <td><%= button_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' }, class: 'mt-2 btn btn-outline-danger' %></td>
-        </tr>
-      <% end %>
+      <%= render partial: 'player', collection: @resources, as: :player %>
     </tbody>
   </table>
+
+  <%= paginate @resources %>
 
   <%= link_to 'Add New player', new_player_path, class: 'mt-2 btn btn-outline-secondary' %>
   <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>

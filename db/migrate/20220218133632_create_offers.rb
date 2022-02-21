@@ -3,11 +3,11 @@
 class CreateOffers < ActiveRecord::Migration[7.0]
   def change
     create_table :offers do |t|
-      t.string :title
-      t.string :header
+      t.string :title, null: false
+      t.string :header, null: false
       t.string :description
-      t.integer :points
-      t.decimal :payout
+      t.integer :points, null: false
+      t.decimal :payout, null: false
 
       t.timestamps
     end

@@ -1,0 +1,9 @@
+<tr class='align-middle'>
+  <td><%= player.first_name %></td>
+  <td><%= player.last_name %></td>
+  <td><%= player.birthdate %></td>
+  <td><%= player.gender %></td>
+  <td><%= link_to 'Show', player, class: 'mt-2 btn btn-outline-primary' %></td>
+  <td><%= link_to 'Edit', edit_player_path(player), class: 'mt-2 btn btn-outline-primary' %></td>
+  <td><%= button_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' }, class: 'mt-2 btn btn-outline-danger' %></td>
+</tr>

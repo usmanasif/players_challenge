@@ -28,7 +28,8 @@ const handleSuccess = (data) => {
     $('.modal-body').text(`${data} matching devices`);
   }
 
-  $('#devices_count_modal').modal('show');
+  $('#count_modal_label').text('Devices Count')
+  $('#count_modal').modal('show');
 };
 
 const handleOnError = () => {

@@ -11,8 +11,8 @@ class DevicesController < BaseController
     min, max = params.require(:os_version_range).split('-')
 
     devices = Device.pluck(:os_version).filter do |os|
-      os if Gem::Version.new(os) > Gem::Version.new(min) && Gem::Version.new(os) < Gem::Version.new(max)
-    end.compact
+      Gem::Version.new(os) > Gem::Version.new(min) && Gem::Version.new(os) < Gem::Version.new(max)
+    end
 
     render json: { count: devices.length }, status: :ok
   end

@@ -1,0 +1,7 @@
+<% if @players.length > 0 %>
+  <%= render partial: 'player', collection: @players, as: :player %>
+<% else %>
+  <tr class="text-center">
+    <td colspan="7">No player found!</td>
+  </tr>
+<% end %>

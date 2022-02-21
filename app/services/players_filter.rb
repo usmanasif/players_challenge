@@ -8,7 +8,7 @@ class PlayersFilter
   end
 
   def filter
-    filtered_players
+    offer_target_id.present? ? filtered_players : Player.all
   end
 
   private

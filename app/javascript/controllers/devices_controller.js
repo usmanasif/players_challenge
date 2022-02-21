@@ -1,7 +1,7 @@
-import { Controller } from '@hotwired/stimulus'
+import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  find_devices_count () {
+  find_devices_count() {
     $('#os_version_range').removeClass('is-invalid');
     const os_version_range = this.element.querySelectorAll('#os_version_range')[0].value;
 
@@ -20,15 +20,15 @@ export default class extends Controller {
 }
 
 const handleSuccess = (data) => {
-  if (!data) {
-    $('.modal-body').css('color', 'red');
+  if (data.count) {
+    $('.modal-body').addClass('text-success');
+    $('.modal-body').text(`${data.count} matching devices`);
+  } else {
+    $('.modal-body').addClass('text-danger');
     $('.modal-body').text("Couldn't find any devices");
-  }else{
-    $('.modal-body').css('color', 'green');
-    $('.modal-body').text(`${data} matching devices`);
   }
 
-  $('#count_modal_label').text('Devices Count')
+  $('#count_modal_label').text('Devices Count');
   $('#count_modal').modal('show');
 };
 

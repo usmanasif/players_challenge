@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlayersFilter
   attr_accessor :offer_target_id
 

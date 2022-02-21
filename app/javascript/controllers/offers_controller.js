@@ -4,8 +4,7 @@ export default class extends Controller {
   total_payout_by_age_range() {
     $('#age-range-input').removeClass('is-invalid');
 
-    const age_range =
-      this.element.querySelectorAll('#age-range-input')[0].value;
+    const age_range = this.element.querySelectorAll('#age-range-input')[0].value;
 
     if (age_range) {
       $.ajax({
@@ -22,8 +21,7 @@ export default class extends Controller {
 }
 
 const handleSuccess = (data) => {
-  $('.modal-body').css('color', 'green');
-
+  $('.modal-body').addClass('text-success');
   $('.modal-body').text(`$${data.total_payout}`);
   $('#count_modal_label').text('Total Payout');
   $('#count_modal').modal('show');

@@ -1,4 +1,4 @@
-<% if @players.length > 0 %>
+<% if @players.length.positive? %>
   <%= render partial: 'player', collection: @players, as: :player %>
 <% else %>
   <tr class="text-center">

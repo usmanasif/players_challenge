@@ -21,9 +21,11 @@ export default class extends Controller {
 
 const handleSuccess = (data) => {
   if (data.count) {
+    $('.modal-body').removeClass('text-danger');
     $('.modal-body').addClass('text-success');
     $('.modal-body').text(`${data.count} matching devices`);
   } else {
+    $('.modal-body').removeClass('text-success');
     $('.modal-body').addClass('text-danger');
     $('.modal-body').text("Couldn't find any devices");
   }

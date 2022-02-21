@@ -41,6 +41,11 @@ RSpec.describe DevicesController, type: :controller do
       get :show, params: { id: device.id }
       expect(response).to have_http_status(:ok)
     end
+
+    it 'respond with code: 404 if id is invalid' do
+      get :show, params: { id: '0' }
+      expect(response).to have_http_status(:not_found)
+    end
   end
 
   describe '#new' do
@@ -63,7 +68,7 @@ RSpec.describe DevicesController, type: :controller do
     it 'respond with code: 200' do
       get :search_by, params: { os_version_range: '0.0.0-12.0.0' }
       expect(response).to have_http_status(:ok)
-      expect(response.body).to eq '1'
+      expect(response.body).to eq JSON.unparse({ count: 1 })
     end
   end
 

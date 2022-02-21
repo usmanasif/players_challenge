@@ -7,7 +7,7 @@ class OffersController < BaseController
     min, max = params.require(:age_range).split('-').map(&:strip)
     total_payout = OfferTarget.joins(:offer).by_age_range(min, max).sum(:payout)
 
-    render json: { total_payout: total_payout }, status: :ok
+    render json: { total_payout: }, status: :ok
   end
 
   private

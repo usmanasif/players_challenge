@@ -1,0 +1,11 @@
+<tr class='align-middle'>
+  <td><%= offer_target.minimum_age %></td>
+  <td><%= offer_target.maximum_age %></td>
+  <td><%= offer_target.gender %></td>
+  <td><%= offer_target.operating_system %></td>
+  <td><%= offer_target.minimum_os_version %></td>
+  <td><%= offer_target.locale %></td>
+  <td><%= link_to 'Show', offer_target, class: 'mt-2 btn btn-outline-primary' %></td>
+  <td><%= link_to 'Edit', edit_offer_target_path(offer_target), class: 'mt-2 btn btn-outline-primary' %></td>
+  <td><%= button_to 'Destroy', offer_target, method: :delete, data: { confirm: 'Are you sure?' }, class: 'mt-2 btn btn-outline-danger' %></td>
+</tr>

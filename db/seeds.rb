@@ -19,7 +19,7 @@ players = []
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     birthdate: Faker::Date.birthday(min_age: 13),
-    gender: Player::GENDER_OPTIONS.sample
+    gender: Faker::Gender.binary_type.downcase
   )
   players << player
   puts "Created a player #{player.first_name}!"
@@ -58,7 +58,7 @@ offers.each do |offer|
       offer_id: offer.id,
       minimum_age: Faker::Number.between(from: 10, to: 30),
       maximum_age: Faker::Number.between(from: 40, to: 70),
-      gender: Player::GENDER_OPTIONS.sample,
+      gender: Faker::Gender.binary_type.downcase,
       operating_system: Device::OPERATING_SYSTEMS.sample,
       minimum_os_version: random_version,
       locale: %w[fr_CA en_US].sample

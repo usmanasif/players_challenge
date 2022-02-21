@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class Player < ApplicationRecord
-  GENDER_OPTIONS = %w[male female non-binary].freeze
+  GENDER_OPTIONS = %w[male female non_binary].freeze
 
   has_one :device, dependent: :destroy
 
+  enum gender: { male: 0, female: 1, non_binary: 2 }
+
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :gender, inclusion: { in: GENDER_OPTIONS }
+  validates :gender, presence: true
   validates :birthdate, presence: true
   validate :validate_birthdate
 

@@ -1,10 +1,10 @@
 <%= form_with model: offer, local: true do |form| %>
-  <%= render "shared/error_messages", resource: offer %>
-  <%= form.text_field :title, placeholder: "Title", class: 'mb-3 form-control' %>
-  <%= form.text_field :header, placeholder: "Header", class: 'mb-3 form-control' %>
-  <%= form.text_area :description, size: '50x3', placeholder: "Description", class: 'mb-3 form-control' %>
-  <%= form.text_field :points, placeholder: "Points", class: 'mb-3 form-control' %>
-  <%= form.text_field :payout, placeholder: "Payout", class: 'mb-3 form-control' %>
+  <%= render 'shared/error_messages', resource: offer %>
+  <%= form.text_field :title, placeholder: 'Title', class: 'mb-3 form-control', required: true %>
+  <%= form.text_field :header, placeholder: 'Header', class: 'mb-3 form-control', required: true %>
+  <%= form.text_area :description, size: '50x3', placeholder: 'Description', class: 'mb-3 form-control' %>
+  <%= form.text_field :points, placeholder: 'Points', class: 'mb-3 form-control', required: true %>
+  <%= form.text_field :payout, placeholder: 'Payout', class: 'mb-3 form-control', required: true %>
   <%= form.submit class: 'mt-2 btn btn-outline-success' %>
   <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
   <%= link_to 'Go to Offers', offers_path, class: 'mt-2 btn btn-outline-secondary' %>

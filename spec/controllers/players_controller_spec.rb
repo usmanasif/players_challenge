@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PlayersController, type: :controller do
-  let(:player) { create(:player) }
+  let(:player) { create(:player, birthdate: 35.years.ago.to_date, gender: Player.genders[:male]) }
   let(:request_params) do
     {
       player: {
@@ -55,13 +55,21 @@ RSpec.describe PlayersController, type: :controller do
   end
 
   describe '#search_by' do
-    let(:offer1) { create(:offer) }
-    let(:offer_target) { create(:offer_target, offer: offer1) }
+    let!(:offer1) { create(:offer) }
+    let!(:offer_target) do
+      create(:offer_target, offer: offer1, operating_system: 'ios',
+                            gender: OfferTarget.genders[:male],
+                            minimum_os_version: '1.0.0', locale: 'en_US',
+                            minimum_age: 20, maximum_age: 60)
+    end
+
+    before do
+      create(:device, player:, operating_system: 'ios', os_version: '1.0.0', locale: 'en_US')
+    end
 
     it 'respond with code: 200' do
       get :search_by, params: { offer_target_id: offer_target.id }
       expect(response).to have_http_status(:ok)
-      expect(response.body).to eq '[]'
     end
   end
 

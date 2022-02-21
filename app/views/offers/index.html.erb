@@ -1,14 +1,14 @@
-<div class='my-5 container' data-controller="offers">
+<div class='my-5 container' data-controller='offers'>
   <h1>Offers</h1>
-  <div class="row mb-3">
-    <div class="col-sm-3">
+  <div class='row mb-3'>
+    <div class='col-sm-3'>
       <h5>Check payout by age range:</h5>
     </div>
-    <div class="col-sm-6">
-      <input type="text" id="age-range-input" placeholder='Enter age range e.g. (13-35)' class='mb-3 form-control' />
+    <div class='col-sm-6'>
+      <input type='text' id='age-range-input' placeholder='Enter age range e.g. (13-35)' class='mb-3 form-control' />
     </div>
-    <div class="col-sm-3">
-      <button class='btn btn-outline-secondary total-payout-btn' data-action="click->offers#total_payout_by_age_range">
+    <div class='col-sm-3'>
+      <button class='btn btn-outline-secondary total-payout-btn' data-action='click->offers#total_payout_by_age_range'>
         Total payout
       </button>
     </div>
@@ -36,4 +36,4 @@
   <%= link_to 'Back', :back, class: 'mt-2 btn btn-outline-secondary' %>
 </div>
 
-<%= render "shared/modal" %>
+<%= render 'shared/modal' %>

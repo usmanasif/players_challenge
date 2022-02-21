@@ -4,9 +4,10 @@ class PlayersController < BaseController
   actions :index, :show, :new, :create, :edit, :update, :destroy
 
   def search_by
-    players = params[:offer_target_id].present? ? PlayersFilter.new(params[:offer_target_id]).filter : Player.all
+    @players = PlayersFilter.new(params[:offer_target_id]).filter
 
-    render json: players, status: :ok
+    html_response = render_to_string 'players/players', layout: false, formats: :html
+    render json: { html: html_response }
   end
 
   private

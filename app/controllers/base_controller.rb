@@ -33,7 +33,7 @@ class BaseController < ApplicationController
   def update
     if resource.update(permitted_params)
       flash[:notice] = "#{humanized_model_name} is updated successfully"
-      redirect_to send("#{model_name.underscore.downcase}_path", resource.id)
+      redirect_to send("#{controller_name.singularize}_path", resource.id)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -55,7 +55,7 @@ class BaseController < ApplicationController
 
   # index method
   def resources
-    @resources ||= model.all.page(params[:page]).per(20)
+    @resources ||= model.page(params[:page])
   end
 
   # show/edit method

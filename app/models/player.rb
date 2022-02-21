@@ -7,10 +7,7 @@ class Player < ApplicationRecord
 
   enum gender: { male: 0, female: 1, non_binary: 2 }
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :gender, presence: true
-  validates :birthdate, presence: true
+  validates :first_name, :last_name, :gender, :birthdate, presence: true
   validate :validate_birthdate
 
   def full_name

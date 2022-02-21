@@ -1,11 +1,11 @@
-<div class='my-5 container' data-controller="players">
+<div class='my-5 container' data-controller='players'>
   <h1>Players</h1>
 
-  <div class="row mb-3">
-    <div class="col-sm-3">
+  <div class='row mb-3'>
+    <div class='col-sm-3'>
       <h5>Filter by offer target</h5>
     </div>
-    <div class="col-sm-6">
+    <div class='col-sm-6'>
       <%= collection_select(:offer_target, :id, OfferTarget.all, :id, :to_s,
                             { include_blank: 'Select' },
                             { class: 'form-select search-by-offer-target',
@@ -25,8 +25,8 @@
     </thead>
     <tbody>
       <% unless @resources.length%>
-        <tr class="text-center">
-          <td colspan="7">No player found!</td>
+        <tr class='text-center'>
+          <td colspan='7'>No player found!</td>
         </tr>
       <% end %>
       <%= render partial: 'player', collection: @resources, as: :player %>
